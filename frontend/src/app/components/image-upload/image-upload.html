@@ -1,0 +1,42 @@
+<mat-card class="upload-card">
+  <mat-card-content>
+    <input
+      #fileInput
+      type="file"
+      id="fileInput"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      hidden
+    />
+
+    <div class="upload-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="fileInput.click()"
+        [disabled]="uploading"
+      >
+        <mat-icon>image</mat-icon> Choose Image
+      </button>
+
+      @if (selectedFile) {
+      <span class="selected-file"> {{ selectedFile.name }} </span>
+
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="uploadImage()"
+        [disabled]="uploading"
+      >
+        <mat-icon>cloud_upload</mat-icon> Upload
+      </button>
+      }
+    </div>
+
+    @if (uploading) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    } @if (message) {
+    <div class="message" [ngClass]="messageType">{{ message }}</div>
+    }
+  </mat-card-content>
+</mat-card>

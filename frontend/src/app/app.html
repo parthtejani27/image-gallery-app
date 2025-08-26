@@ -1,0 +1,73 @@
+<div class="app-container">
+  <!-- Header -->
+  <mat-toolbar color="primary" class="app-header">
+    <mat-icon class="header-icon">photo_camera</mat-icon>
+    <span class="header-title">{{ title }}</span>
+  </mat-toolbar>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Upload Section -->
+    <div class="upload-section">
+      <app-image-upload (imageUploaded)="onImageUploaded()"></app-image-upload>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="gallery-section">
+      <app-image-gallery
+        [images]="images"
+        [loading]="loading"
+        (imageSelected)="openImageModal($event)"
+      >
+      </app-image-gallery>
+    </div>
+  </div>
+
+  <!-- Enhanced Image Viewer Modal -->
+  @if (selectedImage) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <!-- Close Button - Top Right Corner -->
+      <button mat-fab class="modal-close-btn" (click)="closeModal()">
+        <mat-icon>close</mat-icon>
+      </button>
+
+      <!-- Image Container -->
+      <div class="image-container">
+        <img
+          [src]="selectedImage.url"
+          [alt]="selectedImage.originalname"
+          class="modal-image"
+        />
+      </div>
+
+      <!-- Image Info Bar -->
+      <div class="image-info-bar">
+        <div class="image-info">
+          <h3 class="image-name">{{ selectedImage.originalname }}</h3>
+          <p class="image-date">
+            {{ selectedImage.uploadedAt | date:'MMM d, y · h:mm a' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div class="footer-info">
+        <span class="footer-text">
+          <strong>{{ images.length }}</strong>
+          {{ images.length === 1 ? 'Image' : 'Images' }}
+        </span>
+        @if (images.length > 0) {
+        <span class="footer-text">
+          Last uploaded: <strong>{{ getLatestDate() }}</strong>
+        </span>
+        }
+      </div>
+    </div>
+  </footer>
+</div>
