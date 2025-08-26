@@ -1,10 +1,5 @@
 # Image Gallery App
 
-## Project Structure
-my-project/
-|-- frontend/   # Angular application
-|-- backend/    # Node.js/Express server
-|-- README.md
 
 ## Follow these steps to set up and run the project locally.
 
