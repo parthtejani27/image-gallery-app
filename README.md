@@ -10,7 +10,7 @@ cd my-project
 ```
 
 2. Create a .env file inside the backend/ folder
-
+```bash
 PORT=3000
 NODE_ENV=development
 
@@ -18,6 +18,7 @@ AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_REGION=us-east-2
 AWS_S3_BUCKET=
+```
 
 3. For Angular
 ```bash
